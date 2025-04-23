@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Editor</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://unpkg.com/pdf-lib@1.17.1"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script>
+      // PDF.js 워커 설정
+      pdfjsLib.GlobalWorkerOptions.workerSrc =
+        "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Media Editor</h1>
+      </header>
+
+      <div class="sections">
+        <section class="section">
+          <h2>Video Editor</h2>
+          <div class="upload-area" id="videoUploadArea">
+            <p>Drag & drop video here or click to upload</p>
+            <input type="file" id="videoInput" accept="video/*" hidden />
+          </div>
+          <div class="video-container">
+            <video id="videoPlayer" controls style="display: none"></video>
+          </div>
+          <div class="controls">
+            <input
+              type="number"
+              id="startTime"
+              placeholder="Start Time (seconds)"
+              step="0.1"
+            />
+            <input
+              type="number"
+              id="endTime"
+              placeholder="End Time (seconds)"
+              step="0.1"
+            />
+            <button id="cutVideo">Cut Video</button>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>PDF to PNG Converter</h2>
+          <div class="upload-area" id="pdfToPngUploadArea">
+            <p>Drag & drop PDF here or click to upload</p>
+            <input
+              type="file"
+              id="pdfToPngInput"
+              accept="application/pdf"
+              hidden
+            />
+          </div>
+          <div id="pdfToPngPreview"></div>
+          <div class="controls">
+            <button id="convertToPng">Convert to PNG</button>
+          </div>
+        </section>
+
+        <section class="section">
+          <h2>PDF Splitter</h2>
+          <div class="upload-area" id="pdfSplitUploadArea">
+            <p>Drag & drop PDF here or click to upload</p>
+            <input
+              type="file"
+              id="pdfSplitInput"
+              accept="application/pdf"
+              hidden
+            />
+          </div>
+          <div id="pdfSplitPreview"></div>
+          <div class="controls">
+            <input
+              type="number"
+              id="startPage"
+              placeholder="Start Page"
+              min="1"
+            />
+            <input type="number" id="endPage" placeholder="End Page" min="1" />
+            <button id="splitPdf">Split PDF</button>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
+</html>
